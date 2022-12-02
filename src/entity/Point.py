@@ -3,6 +3,7 @@ class Point:
     def __init__(self, abs, ord):
         self.x = abs
         self.y = ord
+
     # method to set x and y
 
     def set_x(self, dx):
@@ -12,6 +13,7 @@ class Point:
     def set_y(self, dy):
         self.y = dy
         return self.y
+
     # method to get x and y values
 
     def get_x(self):
