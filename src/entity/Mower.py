@@ -1,9 +1,9 @@
 class Mower:
     # constructor for mower class, define point object to contain coords,
     # direction attributes to contain the cardinal direction of the mower.
-    def __init__(self, point, arr_instruction, direction):
+    def __init__(self, point, direction):
         self.point = point
-        self.arr_instruction = arr_instruction
+        self.arr_instruction = None
         self.direction = direction
 
     # Set new points for the mower
@@ -12,6 +12,9 @@ class Mower:
 
     def set_point_y(self, point_y):
         self.point.set_y(self, point_y)
+
+    def set_direction(self, direction):
+        self.direction = direction
 
     # set an array to contain instruction
 
