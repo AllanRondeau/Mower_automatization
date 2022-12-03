@@ -7,7 +7,7 @@ from functions.followDirection import follow_direction
 
 # Define an empty list
 places = []
-i = 0
+ind = 0
 
 # Open the file and read the content in a list
 with open('../husqvarna.dat', 'r') as filehandle:
@@ -16,33 +16,34 @@ with open('../husqvarna.dat', 'r') as filehandle:
         curr_place = line[:-1]
         # Add item to the list
         places.append(curr_place)
-
 # Create garden object with coord point.
-arr_garden_cords = [int(x) for x in str(places[i])]
+arr_garden_cords = [int(x) for x in str(places[ind])]
 garden_coords = Point(arr_garden_cords[0], arr_garden_cords[1])
 garden = Garden(garden_coords)
 
 isEmpty = False
 garden_mower = None
 while not isEmpty:
-    i = i + 1
+    ind = ind + 1
     # try to resolve instruction related to places array
     try:
-        if i % 2 != 0:
-            arr = parse_coords(places[i])
-            point = Point(arr[0], arr[1])
-            mower = Mower(point, arr[3])
-            garden.set_mower(mower)
-            garden_mower = garden.get_mower()
-            print(garden_mower.get_direction())
+        if ind <= len(places) - 1:
+            if ind % 2 != 0:
+                arr_parse_coords = parse_coords(places[ind])
+                point = Point(arr_parse_coords[0], arr_parse_coords[1])
+                mower = Mower(point, arr_parse_coords[3])
+                garden.set_mower(mower)
+                garden_mower = garden.get_mower()
 
-        if i % 2 == 0:
-            arr_parse_direction = parse_instruction(places[i])
-            print(arr_parse_direction)
-            direction = follow_direction(arr_parse_direction)
-            print(direction)
+            if ind % 2 == 0:
+                print(ind)
+                arr_parse_direction = parse_instruction(places[ind])
+                direction = follow_direction(arr_parse_direction, garden_mower)
+                print(direction)
+        else:
+            isEmpty = True
 
     # Exception when an error occurred because of the emptiness of the array. Stop the while.
-    except:
+    except ValueError:
         print("there's no more to go")
         isEmpty = True
