@@ -8,10 +8,10 @@ class Mower:
 
     # Set new points for the mower
     def set_point_x(self, point_x):
-        self.point.set_x(self, point_x)
+        self.point.set_x(point_x)
 
     def set_point_y(self, point_y):
-        self.point.set_y(self, point_y)
+        self.point.set_y(point_y)
 
     def set_direction(self, direction):
         self.direction = direction

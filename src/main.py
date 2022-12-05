@@ -23,6 +23,10 @@ garden = Garden(garden_coords)
 
 isEmpty = False
 garden_mower = None
+
+i = 0
+mower_position = []
+
 while not isEmpty:
     ind = ind + 1
     # try to resolve instruction related to places array
@@ -36,14 +40,13 @@ while not isEmpty:
                 garden_mower = garden.get_mower()
 
             if ind % 2 == 0:
-                print(ind)
-                arr_parse_direction = parse_instruction(places[ind])
-                direction = follow_direction(arr_parse_direction, garden_mower)
-                print(direction)
+                arr_parse_direction = parse_instruction(places[ind]) # Parse all instruction in an array
+                # return the mower with his final position after his work done.
+                mower = follow_direction(arr_parse_direction, garden_mower, garden)
+                print(mower.create_point_with_card_dir()) # Display his final position.
+        # Stop the while when array is empty.
         else:
             isEmpty = True
-
-    # Exception when an error occurred because of the emptiness of the array. Stop the while.
-    except ValueError:
+    except ValueError:  # Exception when an error occurred.
         print("there's no more to go")
         isEmpty = True
